@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = "CoCoReactiveCocoa"
   s.version      = "1.0.0"
   s.summary      = "A framework for composing and transforming streams of values."
-  s.homepage     = "https://github.com/blog/1107-reactivecocoa-is-now-open-source"
+  s.homepage     = "https://github.com/CoCoMaker"
   s.author       = { "CoCoMaker" => "iScarlett@qq.com" }
   s.source = {"git"=>"https://github.com/CoCoMaker/CoCoReactiveCocoa.git"}
   s.license      = 'MIT'
@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
     sp.source_files = 'CoCoReactiveCocoa/*{AppKit,NSControl,NSText,UI,MK}*'
     sp.ios.exclude_files = 'CoCoReactiveCocoa/*{AppKit,NSControl,NSText}*'
     sp.osx.exclude_files = 'CoCoReactiveCocoa/*{UI,MK}*'
+    sp.framework = 'MapKit'
   end
 
   s.subspec 'Core' do |sp|
