@@ -19,21 +19,21 @@ Pod::Spec.new do |s|
   # END
 
   s.subspec 'no-arc' do |sp|
-    sp.source_files = 'ReactiveCocoa/RACObjCRuntime.{h,m}'
+    sp.source_files = 'CoCoReactiveCocoa/RACObjCRuntime.{h,m}'
     sp.requires_arc = false
   end
 
   s.subspec 'UI' do |sp|
     sp.dependency 'CoCoReactiveCocoa/Core'
-    sp.source_files = 'ReactiveCocoa/*{AppKit,NSControl,NSText,UI,MK}*'
-    sp.ios.exclude_files = 'ReactiveCocoa/*{AppKit,NSControl,NSText}*'
-    sp.osx.exclude_files = 'ReactiveCocoa/*{UI,MK}*'
+    sp.source_files = 'CoCoReactiveCocoa/*{AppKit,NSControl,NSText,UI,MK}*'
+    sp.ios.exclude_files = 'CoCoReactiveCocoa/*{AppKit,NSControl,NSText}*'
+    sp.osx.exclude_files = 'CoCoReactiveCocoa/*{UI,MK}*'
   end
 
   s.subspec 'Core' do |sp|
     sp.dependency 'CoCoReactiveCocoa/no-arc'
-    sp.source_files = ["ReactiveCocoa/*.{d,h,m}", "ReactiveCocoa/extobjc/*.{h,m}"]
-    sp.private_header_files = 'ReactiveCocoa/*Private.h'
-    sp.exclude_files = 'ReactiveCocoa/*{RACObjCRuntime,AppKit,NSControl,NSText,UIActionSheet,UI,MK}*'
+    sp.source_files = ["CoCoReactiveCocoa/*.{d,h,m}", "CoCoReactiveCocoa/extobjc/*.{h,m}"]
+    sp.private_header_files = 'CoCoReactiveCocoa/*Private.h'
+    sp.exclude_files = 'CoCoReactiveCocoa/*{RACObjCRuntime,AppKit,NSControl,NSText,UIActionSheet,UI,MK}*'
   end
 end
