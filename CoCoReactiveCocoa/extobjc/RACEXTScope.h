@@ -88,11 +88,16 @@
     _Pragma("clang diagnostic pop")
 
 /*** implementation details follow ***/
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 typedef void (^rac_cleanupBlock_t)(void);
 
 static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) {
     (*block)();
 }
+#pragma clang diagnostic pop
+
+
 
 #define rac_weakify_(INDEX, CONTEXT, VAR) \
     CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
