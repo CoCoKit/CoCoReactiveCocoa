@@ -320,7 +320,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		RACSerialDisposable *timerDisposable = [[RACSerialDisposable alloc] init];
 		NSMutableArray *values = [NSMutableArray array];
 
-		void (^flushValues)() = ^{
+		void (^flushValues)(void) = ^{
 			@synchronized (values) {
 				[timerDisposable.disposable dispose];
 
@@ -445,7 +445,10 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	}] setNameWithFormat:@"+combineLatest: %@", signals];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 + (RACSignal *)combineLatest:(id<NSFastEnumeration>)signals reduce:(id (^)())reduceBlock {
+#pragma clang diagnostic pop
 	NSCParameterAssert(reduceBlock != nil);
 
 	RACSignal *result = [self combineLatest:signals];
@@ -1323,6 +1326,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
+#pragma clang diagnostic ignored "-Wcomma"
 
 - (RACSignal *)windowWithStart:(RACSignal *)openSignal close:(RACSignal * (^)(RACSignal *start))closeBlock {
 	NSCParameterAssert(openSignal != nil);

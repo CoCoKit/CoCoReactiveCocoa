@@ -93,8 +93,7 @@
 	_channel = [[RACChannel alloc] init];
 
 	@weakify(self);
-
-	void (^cleanUp)() = ^{
+	void (^cleanUp)(void) = ^{
 		@strongify(self);
 
 		id target = self.target;

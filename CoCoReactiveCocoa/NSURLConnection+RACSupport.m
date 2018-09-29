@@ -21,21 +21,24 @@
 		createSignal:^(id<RACSubscriber> subscriber) {
 			NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 			queue.name = @"org.reactivecocoa.ReactiveCocoa.NSURLConnectionRACSupport";
-
-			[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-				// The docs say that `nil` data means an error occurred, but
-				// `nil` responses can also occur in practice (circumstances
-				// unknown). Consider either to be an error.
-				//
-				// Note that _empty_ data is not necessarily erroneous, as there
-				// may be headers but no HTTP body.
-				if (response == nil || data == nil) {
-					[subscriber sendError:error];
-				} else {
-					[subscriber sendNext:RACTuplePack(response, data)];
-					[subscriber sendCompleted];
-				}
-			}];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                // The docs say that `nil` data means an error occurred, but
+                // `nil` responses can also occur in practice (circumstances
+                // unknown). Consider either to be an error.
+                //
+                // Note that _empty_ data is not necessarily erroneous, as there
+                // may be headers but no HTTP body.
+                if (response == nil || data == nil) {
+                    [subscriber sendError:error];
+                } else {
+                    [subscriber sendNext:RACTuplePack(response, data)];
+                    [subscriber sendCompleted];
+                }
+            }];
+#pragma clang diagnostic pop
+			
 
 			return [RACDisposable disposableWithBlock:^{
 				// It's not clear if this will actually cancel the connection,

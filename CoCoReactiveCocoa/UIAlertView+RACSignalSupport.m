@@ -13,7 +13,10 @@
 #import "NSObject+RACDescription.h"
 #import <objc/runtime.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 @implementation UIAlertView (RACSignalSupport)
+#pragma clang diagnostic pop
 
 static void RACUseDelegateProxy(UIAlertView *self) {
 	if (self.delegate == self.rac_delegateProxy) return;

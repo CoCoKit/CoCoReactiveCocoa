@@ -26,12 +26,16 @@
 	return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 + (id)invokeBlock:(id)block withArguments:(RACTuple *)arguments {
-	NSCParameterAssert(block != NULL);
-
-	RACBlockTrampoline *trampoline = [[self alloc] initWithBlock:block];
-	return [trampoline invokeWithArguments:arguments];
+    NSCParameterAssert(block != NULL);
+    
+    RACBlockTrampoline *trampoline = [[self alloc] initWithBlock:block];
+    return [trampoline invokeWithArguments:arguments];
 }
+#pragma clang diagnostic pop
+
 
 - (id)invokeWithArguments:(RACTuple *)arguments {
 	SEL selector = [self selectorForArgumentCount:arguments.count];

@@ -53,9 +53,13 @@
 	return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 + (instancetype)disposableWithBlock:(void (^)(void))block {
-	return [[self alloc] initWithBlock:block];
+    return [[self alloc] initWithBlock:block];
 }
+#pragma clang diagnostic pop
+
 
 - (void)dealloc {
 	if (_disposeBlock == NULL || _disposeBlock == (__bridge void *)self) return;

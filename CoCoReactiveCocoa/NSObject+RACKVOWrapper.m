@@ -54,7 +54,11 @@
 
 			BOOL isObject = attributes->objectClass != nil || strstr(attributes->type, @encode(id)) == attributes->type;
 			BOOL isProtocol = attributes->objectClass == NSClassFromString(@"Protocol");
-			BOOL isBlock = strcmp(attributes->type, @encode(void(^)())) == 0;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+            BOOL isBlock = strcmp(attributes->type, @encode(void(^)())) == 0;
+#pragma clang diagnostic pop
+			
 			BOOL isWeak = attributes->weak;
 
 			// If this property isn't actually an object (or is a Class object),

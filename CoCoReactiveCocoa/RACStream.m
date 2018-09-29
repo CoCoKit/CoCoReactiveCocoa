@@ -136,7 +136,10 @@
 	}] setNameWithFormat:@"[%@] -ignore: %@", self.name, [value rac_description]];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 - (instancetype)reduceEach:(id (^)())reduceBlock {
+#pragma clang diagnostic pop
 	NSCParameterAssert(reduceBlock != nil);
 
 	__weak RACStream *stream __attribute__((unused)) = self;
@@ -231,7 +234,10 @@
 	}] setNameWithFormat:@"+zip: %@", streams];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 + (instancetype)zip:(id<NSFastEnumeration>)streams reduce:(id (^)())reduceBlock {
+#pragma clang diagnostic pop
 	NSCParameterAssert(reduceBlock != nil);
 
 	RACStream *result = [self zip:streams];
