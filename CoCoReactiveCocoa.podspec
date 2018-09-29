@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = "A framework for composing and transforming streams of values."
   s.homepage     = "https://github.com/CoCoMaker"
   s.author       = { "CoCoMaker" => "iScarlett@qq.com" }
-  s.source = {"git"=>"https://github.com/CoCoMaker/CoCoReactiveCocoa.git"}
+  s.source = {"git"=>"https://github.com/CoCoMaker/CoCoReactiveCocoa.git", :tag => "1.0.0"}
   s.license      = 'MIT'
   s.description  = "CoCoReactiveCocoa (RAC) is an Objective-C framework for Functional Reactive Programming. It provides APIs for composing and transforming streams of values."
  
